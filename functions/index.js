@@ -30,7 +30,7 @@ functions.getPriceProductFromAllInstruments = async (url) => {
         const response = await axios.get(url);
 
         const $ = cheerio.load(response.data);
-        const priceElement = $('.product-main .product-price .current-price');
+        const priceElement = $('.product-main .product-price .current-price').first();
         let price = 'Не найдено';
         if (priceElement.length > 0) price = priceElement.text().replace(/\D/g, '');
         

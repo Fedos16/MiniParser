@@ -1,5 +1,7 @@
 window.onload = async () => {
 
+    let dateStartParsing = null;
+
     function startParsing(e) {
         socket.emit('start-parsing');
 
@@ -7,6 +9,8 @@ window.onload = async () => {
         e.target.textContent = 'Парсинг ...';
 
         progress.textContent = 'Загружаю данные для парсинга ...'
+
+        dateStartParsing = new Date();
     }
 
     const socket = io();
@@ -16,10 +20,10 @@ window.onload = async () => {
     if (btnStart) btnStart.addEventListener('click', startParsing, true);
 
     socket.on('parsing-status', msg => {
-        progress.textContent = msg;
+        progress.innerHTML = msg;
     });
     socket.on('parsing-finish', msg => {
-        progress.textContent = msg;
+        progress.innerHTML = `${msg}<br>Выполнено за ~${Math.round((new Date() - dateStartParsing) / 1000 / 60)} мин.`;
         btnStart.disabled = false;
         btnStart.textContent = 'Парсить';
     });

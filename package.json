@@ -1,10 +1,12 @@
 {
   "name": "parser",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "dev": "nodemon app.js"
+  },
+  "engines": {
+    "node": "^14.x.x"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,8 @@
   "dependencies": {
     "axios": "^0.25.0",
     "cheerio": "^1.0.0-rc.10",
+    "cross-env": "^7.0.3",
+    "dotenv": "^15.0.0",
     "express": "^4.17.2",
     "googleapis": "^94.0.0",
     "socket.io": "^4.4.1"
